@@ -1,12 +1,17 @@
 package digital.signature.backend.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import digital.signature.backend.models.Documento;
 import digital.signature.backend.services.DocumentoService;
 
 @RestController
@@ -24,6 +29,11 @@ public class DocumentoController {
         @RequestParam("idUtente") Long idUtente
     ) {
         return documentoService.firmaDocumento(titolo, file, firma, idUtente);
+    }
+
+    @GetMapping("api/elenco/documenti")
+    public List<Documento> elencoDocumenti(@RequestParam("idUtente") Long idUtente) {
+        return documentoService.elencoDocumenti(idUtente);
     }
 
 }

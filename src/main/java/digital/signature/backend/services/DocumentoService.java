@@ -40,12 +40,19 @@ public class DocumentoService {
         Documento documento = new Documento(null, titolo, percorso, firma, utenti);
 
         try {
-            Documento documentoInviato = documentoRepository.save(documento);
+            documentoRepository.save(documento);
         } catch (Exception e) {
             return false;
         }
 
         return true;
+    }
+
+    public List<Documento> elencoDocumenti(Long idUtente) {
+        Utente utente = utenteRepository.findById(idUtente).get();
+        List<Utente> utenti = new ArrayList<Utente>();
+        utenti.add(utente);
+        return documentoRepository.findByUtenti(utenti);
     }
 
 }
