@@ -26,7 +26,7 @@ public class DocumentoService {
 
     public Boolean firmaDocumento(String titolo, MultipartFile file, String firma, Long idUtente) {
 
-        String percorso = PUBLIC_DIRECTORY.concat(titolo).concat(file.getName()).concat(".pdf");
+        String percorso = PUBLIC_DIRECTORY.concat(titolo).concat(".pdf");
 
         try {
             file.transferTo(new File(percorso));
