@@ -16,6 +16,14 @@ public class Utente {
     private String username;
     private String password;
 
+    public Utente() {}
+
+    public Utente(Long idUtente, String username, String password) {
+        this.idUtente = idUtente;
+        this.username = username;
+        this.password = password;
+    }
+
     public Long getIdUtente() {
         return this.idUtente;
     }
