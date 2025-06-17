@@ -1,9 +1,16 @@
 package digital.signature.backend.models;
 
+import java.util.List;
+
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -19,17 +26,17 @@ public class Documento {
     private String file;
     private String firma;
 
-    @OneToOne
-    private Utente utente;
+    @ManyToMany
+    private List<Utente> utenti;
 
     public Documento() {}
 
-    public Documento(Long idDocumento, String titolo, String file, String firma, Utente utente) {
+    public Documento(Long idDocumento, String titolo, String file, String firma, List<Utente> utenti) {
         this.idDocumento = idDocumento;
         this.titolo = titolo;
         this.file = file;
         this.firma = firma;
-        this.utente = utente;
+        this.utenti = utenti;
     }
 
     public Long getIdDocumento() {
@@ -60,12 +67,12 @@ public class Documento {
         this.firma = firma;
     }
 
-    public Utente getUtente() {
-        return this.utente;
+    public List<Utente> getUtenti() {
+        return this.utenti;
     }
 
     public void setUtente(Utente utente) {
-        this.utente = utente;
+        this.utenti.add(utente);
     }
 
 }
